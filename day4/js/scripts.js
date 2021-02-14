@@ -101,18 +101,43 @@ if (season === "September" || season === "October" || season === "November") {
 */
 
 /*
-Check if a day is weekend day or a working day. Your script will take day as an input.
+let dayInput = prompt("What day is today?");
 
-What is the day  today? Saturday
-Saturday is a weekend.
-
-What is the day today? saturDaY
-Saturday is a weekend.
-
-What is the day today? Friday
-Friday is a working day.
-
-What is the day today? FrIDAy
-Friday is a working day.
+if (dayInput.match(/Saturday/i) || dayInput.match(/Sunday/i)) {
+    console.log(`${dayInput} is a weekend.`);
+} else if (dayInput.match(/Monday/i) ||
+           dayInput.match(/Tuesday/i) ||
+           dayInput.match(/Wednesday/i) ||
+           dayInput.match(/Thursday/i) ||
+           dayInput.match(/Friday/i)) {
+    console.log(`${dayInput} is a work day.`);
+} else { 
+    console.log(`${dayInput} is not a valid day.`);
+};
 */
 
+
+let monthPrompt = prompt("Write in a month to check its number of days.");
+
+if (monthPrompt.match(/January/i) ||
+    monthPrompt.match(/March/i) ||
+    monthPrompt.match(/July/i) ||
+    monthPrompt.match(/August/i) ||
+    monthPrompt.match(/October/i) ||
+    monthPrompt.match(/December/i)) {
+    console.log(`${monthPrompt} has 31 days.`);
+} else if (monthPrompt.match(/April/i) ||
+           monthPrompt.match(/June/i) ||
+           monthPrompt.match(/September/i) ||
+           monthPrompt.match(/November/i)) {
+    console.log(`${monthPrompt} has 30 days.`);
+} else if (monthPrompt.match(/February/i)) {
+    let yearPrompt = prompt("February of what year?");
+    if ((yearPrompt % 4 == 0) && (yearPrompt % 100 != 0) || (yearPrompt % 400 == 0)) {
+        console.log(`As ${yearPrompt} is a leap year, February has 29 days.`);
+    } else {
+    console.log(`As ${yearPrompt} is not a leap year, February has 28 days.`);
+    }
+} else {
+    console.log("Not a valid month.");
+};
