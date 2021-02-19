@@ -168,6 +168,21 @@ for (i = 1; i <= 5; i++) {
 };
 console.log(arrayFiveUniqueNumbers);
 
-// Develop a small script which generate a six characters random id:
+// Develop a small script which generate a six characters random id
+// Develop a small script which generate any number of characters random id
+const chars = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+let randomId = '';
+for (i = 0; i < 6; i++) {
+    tempRandomNumber = Math.floor((Math.random() * chars.length));
+    randomId += chars[tempRandomNumber];
+}
+console.log(randomId);
 
-// 5j2khz
+
+const hexadecimalChars = ['A', 'B', 'C', 'D', 'E', 'F', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+let randomHexadecimal = '#';
+for (i = 0; i < 6; i++) {
+    tempRandomNumber = Math.floor((Math.random() * hexadecimalChars.length));
+    randomHexadecimal += hexadecimalChars[tempRandomNumber];
+}
+console.log(randomHexadecimal);
