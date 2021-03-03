@@ -253,5 +253,92 @@ if (landCountries != []) {
 
 //In above countries array, check if there is a country or countries end with a substring 'ia'. If there are countries end with, print it as array. If there is no country containing the word 'ai', print 'These are countries ends without ia'.
 //['Albania', 'Bolivia','Ethiopia']
+const iaCountries = [];
+for (i = 0; i < countries.length; i++) {
+    if (countries[i].slice(-2) === 'ia') {
+        iaCountries.push(countries[i]);
+    }
+};
+if (iaCountries !== []) {
+    console.log(iaCountries);
+} else {
+    console.log("These countries don't end in ia");
+};
 
+// Using the above countries array, find the country containing the biggest number of characters.
+// Ethiopia
+let longestCountryName = 0;
+for (i = 0; i < countriesLength.length; i++) {
+    if (countriesLength[i] > longestCountryName) {
+        longestCountryName = countriesLength[i];
+    }
+};
+console.log(longestCountryName);
 
+// Using the above countries array, find the country containing only 5 characters.
+// ['Japan', 'Kenya']
+const countriesWithFiveChars = [];
+for (i = 0; i < countries.length; i++) {
+    if (countries[i].length === 5) {
+        countriesWithFiveChars.push(countries[i]);
+    }
+};
+console.log(countriesWithFiveChars);
+
+// Find the longest word in the webTechs array
+let longestWebTechsWord = '';
+for (i = 0; i < webTechs.length; i++) {
+    if (webTechs[i].length > longestWebTechsWord.length) {
+        longestWebTechsWord = webTechs[i];
+    }
+};
+console.log(longestWebTechsWord);
+
+// Use the webTechs array to create the following array of arrays:
+// [["HTML", 4], ["CSS", 3],["JavaScript", 10],["React", 5],["Redux", 5],["Node", 4],["MongoDB", 7]]
+const webTechsMixedArrays = [];
+let tempWebTechsArray = [];
+for (let i = 0; i < webTechs.length; i++) {
+    tempWebTechsArray = [];
+    tempWebTechsArray.push(webTechs[i]);
+    tempWebTechsArray.push(webTechs[i].length);
+    webTechsMixedArrays.push(tempWebTechsArray);
+};
+console.log(webTechsMixedArrays);
+
+// An application created using MongoDB, Express, React and Node is called a MERN stack app. Create the acronym MERN by using the array mernStack
+let mernStackAcronym = '';
+let mernStackFirstLetter = '';
+for (i = 0; i < mernStack.length; i++) {
+    mernStackFirstLetter = mernStack[i].slice(0, 1).toUpperCase();
+    mernStackAcronym += mernStackFirstLetter;
+};
+console.log(mernStackAcronym);
+
+// Iterate through the array, ["HTML", "CSS", "JS", "React", "Redux", "Node", "Express", "MongoDB"] using a for loop or for of loop and print out the items.
+for (let tech of webTechs) {
+    console.log(tech);
+};
+
+// This is a fruit array , ['banana', 'orange', 'mango', 'lemon'] reverse the order using loop without using a reverse method.
+const fruitArray = ['banana', 'orange', 'mango', 'lemon'];
+const reverseFruitArray = [];
+for (i = fruitArray.length - 1; i >= 0; i--) {
+    reverseFruitArray.push(fruitArray[i]);
+}
+console.log(reverseFruitArray);
+
+// Print all the elements of array as shown below.
+const fullStack = [
+    ['HTML', 'CSS', 'JS', 'React'],
+    ['Node', 'Express', 'MongoDB']
+  ]
+/*
+  HTML
+  CSS
+  JS
+  REACT
+  NODE
+  EXPRESS
+  MONGODB
+*/
