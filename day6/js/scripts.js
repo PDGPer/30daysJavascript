@@ -342,3 +342,35 @@ const fullStack = [
   EXPRESS
   MONGODB
 */
+const concatFullStack = fullStack[0].concat(fullStack[1]);
+let verticalFullStack = '';
+for (i = 0; i < concatFullStack.length; i++) {
+    verticalFullStack += concatFullStack[i] + '\n';
+};
+console.log(verticalFullStack);
+
+// Copy countries array (Avoid mutation)
+const countriesCopy = [];
+for (i = 0; i < countries.length; i++) {
+    countriesCopy.push(countries[i]);
+};
+console.log(countriesCopy);
+
+// Arrays are mutable. Create a copy of array which does not modify the original. Sort the copied array and store in a variable sortedCountries
+const sortedCountries = [];
+for (i = 0; i < countries.length; i++) {
+    sortedCountries.push(countries[i]);
+};
+sortedCountries.sort();
+console.log(sortedCountries);
+
+// Sort the webTechs array and mernStack array
+console.log(webTechs.sort());
+console.log(mernStack.sort());
+
+// Reverse the countries array and capitalize each country and stored it as an array
+const reversedCountries = [];
+for (i = countries.length - 1; i >= 0; i--) {
+    reversedCountries.push(countries[i].toUpperCase());
+}
+console.log(reversedCountries);
