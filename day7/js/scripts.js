@@ -311,3 +311,186 @@ console.log(reverseArray([1, 2, 3, 4, 5]))
 console.log(reverseArray(['A', 'B', 'C']))
 //['C', 'B', 'A']
 */
+reverseArray = (arr) => {
+    const reversedArray = [];
+    for (i = arr.length - 1; i >= 0; i--) {
+        reversedArray.push(arr[i]);
+    };
+    return reversedArray;
+};
+console.log(reverseArray(countries));
+
+// Declare a function name capitalizeArray. It takes array as a parameter and it returns the - capitalizedarray.
+capitalizeArray = (arr) => {
+    const capitalizedArray = [];
+    for (i = 0; i < arr.length; i++) {
+        capitalizedArray.push(arr[i].toUpperCase());
+    };
+    return capitalizedArray;
+};
+console.log(capitalizeArray(countries));
+
+// Declare a function name addItem. It takes an item parameter and it returns an array after adding the item.
+const addItemArray = [];
+addItem = (item, array) => {
+    array.push(item);
+    return array;
+};
+console.log(addItem(1, addItemArray));
+
+// Declare a function name removeItem. It takes an index parameter and it returns an array after removing an item.
+removeItem = (itemIndex, array) => {
+    array.splice(itemIndex, 1);
+    return array;
+};
+console.log(removeItem(1, countries));
+
+// Declare a function name sumOfNumbers. It takes a number parameter and it adds all the numbers in that range.
+sumOfNumbers = (n) => {
+    let nRange = 0;
+    for (i = n; i > 0; i--) {
+        nRange += i;
+    };
+    return nRange;
+};
+console.log(sumOfNumbers(3));
+console.log(sumOfNumbers(7));
+
+// Declare a function name sumOfOdds. It takes a number parameter and it adds all the odd numbers in that - range.
+sumOfOdds = (n) => {
+    const arrayOfn = [];
+    for (i = n; i > 0; i--) {
+        if (i % 2 !== 0) {
+            arrayOfn.push(i);
+        };
+    };
+    let nRange = 0;
+    for (i = 0; i < arrayOfn.length; i++) {
+        nRange += arrayOfn[i];
+    };
+    return nRange;
+};
+console.log(sumOfOdds(7));
+
+// Declare a function name sumOfEven. It takes a number parameter and it adds all the even numbers in that - range.
+sumOfEven = (n) => {
+    const arrayOfn = [];
+    for (i = n; i > 0; i--) {
+        if (i % 2 === 0) {
+            arrayOfn.push(i);
+        };
+    };
+    let nRange = 0;
+    for (i = 0; i < arrayOfn.length; i++) {
+        nRange += arrayOfn[i];
+    };
+    return nRange;
+};
+console.log(sumOfEven(7));
+
+/* Declare a function name evensAndOdds . It takes a positive integer as parameter and it counts number of evens and odds in the number.
+
+evensAndOdds(100);
+The number of odds are 50.
+The number of evens are 51.
+*/
+evensAndOdds = (number) => {
+    let evenCount = 0;
+    let oddCount = 0;
+    for (i = number; i >= 0; i--) {
+        if (i % 2 === 0) {
+            evenCount++;
+        } else {
+            oddCount++;
+        };
+    };
+    return `The number of odds is ${oddCount}. The number of evens is ${evenCount}.`
+};
+console.log(evensAndOdds(134));
+
+/* Write a function which takes any number of arguments and return the sum of the arguments.
+
+sum(1, 2, 3) // -> 6
+sum(1, 2, 3, 4) // -> 10
+*/
+function sumArguments() {
+    let sum = 0;
+    for (i = 0; i < arguments.length; i++) {
+        sum += arguments[i];
+    };
+    return sum;
+};
+console.log(sumArguments(5, 5, 5));
+
+// Write a function which generates a randomUserIp.
+function randomUserIp() {
+    let aaa = Math.floor((Math.random() * 256));
+    let bbb = Math.floor((Math.random() * 256));
+    let ccc = Math.floor((Math.random() * 256));
+    let ddd = Math.floor((Math.random() * 256));
+    return `${aaa}.${bbb}.${ccc}.${ddd}`;
+};
+console.log(randomUserIp());
+
+// Write a function which generates a randomMacAddress.
+function randomMacAddress() {
+    const hexadecimalArray = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'];
+    let aa = hexadecimalArray[Math.floor(Math.random() * 16)] + hexadecimalArray[Math.floor(Math.random() * 16)];
+    let bb = hexadecimalArray[Math.floor(Math.random() * 16)] + hexadecimalArray[Math.floor(Math.random() * 16)];
+    let cc = hexadecimalArray[Math.floor(Math.random() * 16)] + hexadecimalArray[Math.floor(Math.random() * 16)];
+    let dd = hexadecimalArray[Math.floor(Math.random() * 16)] + hexadecimalArray[Math.floor(Math.random() * 16)];
+    let ee = hexadecimalArray[Math.floor(Math.random() * 16)] + hexadecimalArray[Math.floor(Math.random() * 16)];
+    let ff = hexadecimalArray[Math.floor(Math.random() * 16)] + hexadecimalArray[Math.floor(Math.random() * 16)];
+    return `${aa}:${bb}:${cc}:${dd}:${ee}:${ff}`;
+};
+console.log(randomMacAddress());
+
+// Declare a function name randomHexaNumberGenerator. When this function is called it generates a random hexadecimal number. The function return the hexadecimal number.
+
+function randomHexaNumberGenerator() {
+    const hexadecimalArray = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'];
+    let number = hexadecimalArray[Math.floor(Math.random() * 16)] +
+                 hexadecimalArray[Math.floor(Math.random() * 16)] +
+                 hexadecimalArray[Math.floor(Math.random() * 16)] +
+                 hexadecimalArray[Math.floor(Math.random() * 16)] +
+                 hexadecimalArray[Math.floor(Math.random() * 16)] +
+                 hexadecimalArray[Math.floor(Math.random() * 16)];
+    return `#${number}`;
+};
+console.log(randomHexaNumberGenerator());
+
+// Declare a function name userIdGenerator. When this function is called it generates seven character id. The function return the id.
+function userIdGenerator() {
+    const charactersArray = ['0','1','2','3','4','5','6','7','8','9','A','a','B','b','C','c','D','d','E','e','F','f','G','g','H','h','I','i','J','j','K','k','L','l','M','m','N','n','O','o','P','p','Q','q','R','r','S','s','T','t','U','u','V','v','W','w','X','x','Y','y','Z','z'];
+    let id = charactersArray[Math.floor(Math.random() * charactersArray.length)] +
+             charactersArray[Math.floor(Math.random() * charactersArray.length)] +
+             charactersArray[Math.floor(Math.random() * charactersArray.length)] +
+             charactersArray[Math.floor(Math.random() * charactersArray.length)] +
+             charactersArray[Math.floor(Math.random() * charactersArray.length)] +
+             charactersArray[Math.floor(Math.random() * charactersArray.length)] +
+             charactersArray[Math.floor(Math.random() * charactersArray.length)];
+    return id;
+};
+console.log(userIdGenerator());
+
+/* Modify question number n . Declare a function name userIdGeneratedByUser. It doesn’t take any parameter but it takes two inputs using prompt(). One of the input is the number of characters and the second input is the number of ids which are supposed to be generated.
+
+userIdGeneratedByUser()
+'kcsy2
+SMFYb
+bWmeq
+ZXOYh
+2Rgxf
+'
+userIdGeneratedByUser()
+'1GCSgPLMaBAVQZ26
+YD7eFwNQKNs7qXaT
+ycArC5yrRupyG00S
+UbGxOFI7UXSWAyKN
+dIV0SSUTgAdKwStr
+'
+*/
+function userIdGeneratedByUser(charNumber, idsCount) {
+    const charactersArray = ['0','1','2','3','4','5','6','7','8','9','A','a','B','b','C','c','D','d','E','e','F','f','G','g','H','h','I','i','J','j','K','k','L','l','M','m','N','n','O','o','P','p','Q','q','R','r','S','s','T','t','U','u','V','v','W','w','X','x','Y','y','Z','z'];
+    
+};
