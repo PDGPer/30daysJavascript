@@ -492,5 +492,72 @@ dIV0SSUTgAdKwStr
 */
 function userIdGeneratedByUser(charNumber, idsCount) {
     const charactersArray = ['0','1','2','3','4','5','6','7','8','9','A','a','B','b','C','c','D','d','E','e','F','f','G','g','H','h','I','i','J','j','K','k','L','l','M','m','N','n','O','o','P','p','Q','q','R','r','S','s','T','t','U','u','V','v','W','w','X','x','Y','y','Z','z'];
-    
+    let generatedIds = '';
+    let tempId = '';
+    for (i = idsCount; i > 0; i--) {
+        tempId = '';
+        for (ii = charNumber; ii > 0; ii--) {
+            tempId += charactersArray[Math.floor(Math.random() * charactersArray.length)];  
+        };
+        generatedIds += tempId + '\n';
+    };
+    return generatedIds;
+};
+console.log(userIdGeneratedByUser(7, 5));
+
+/* Write a function name rgbColorGenerator and it generates rgb colors.
+rgbColorGenerator()
+rgb(125,244,255)
+*/
+function rgbColorGenerator() {
+    let red = Math.floor((Math.random() * 256));
+    let green = Math.floor((Math.random() * 256));
+    let blue = Math.floor((Math.random() * 256));
+    return `rgb(${red},${green},${blue})`;
+};
+console.log(rgbColorGenerator());
+
+// Write a function arrayOfHexaColors which return any number of hexadecimal colors in an array.
+function arrayOfHexaColors(colorsAmount) {
+    const hexadecimalArray = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'];
+    const colorsArray = [];
+    let tempColor = '';
+    for (i = colorsAmount; i > 0; i--) {
+        tempColor = '';
+        tempColor = `#${hexadecimalArray[Math.floor(Math.random() * 16)] + hexadecimalArray[Math.floor(Math.random() * 16)] + hexadecimalArray[Math.floor(Math.random() * 16)] + hexadecimalArray[Math.floor(Math.random() * 16)] + hexadecimalArray[Math.floor(Math.random() * 16)] + hexadecimalArray[Math.floor(Math.random() * 16)]}`;
+        colorsArray.push(tempColor);
+    };
+    return colorsArray;
+};
+console.log(arrayOfHexaColors(4));
+
+// Write a function arrayOfRgbColors which return any number of RGB colors in an array.
+function arrayOfRgbColors(colorsAmount) {
+    const colorsArray = [];
+    let tempColor = '';
+    for (i = colorsAmount; i > 0; i--) {
+        tempColor = '';
+        tempColor = `rgb(${Math.floor((Math.random() * 256))},${Math.floor((Math.random() * 256))},${Math.floor((Math.random() * 256))})`;
+        colorsArray.push(tempColor);
+    };
+    return colorsArray;
+};
+console.log(arrayOfRgbColors(5));
+
+// Write a function convertHexaToRgb which converts hexa color to rgb and it returns an rgb color.
+function convertHexaToRgb(hexColor) {
+    let hexRed = hexColor.substr(0, 2);
+    let hexGreen = hexColor.substr(2, 2);
+    let hexBlue = hexColor.substr(4, 2);
+    let rgbRed = parseInt(hexRed, 16);
+    let rgbGreen = parseInt(hexGreen, 16);
+    let rgbBlue = parseInt(hexBlue, 16);
+    return `rgb(${rgbRed},${rgbGreen},${rgbBlue})`;
+};
+console.log(convertHexaToRgb('9B65EA'));
+
+// Write a function convertRgbToHexa which converts rgb to hexa color and it returns an hexa color.
+function convertRgbToHexa(rgbColor) {
+    let rgbRed = rgbColor.substr(5)
+
 };
