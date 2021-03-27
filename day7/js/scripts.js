@@ -558,6 +558,70 @@ console.log(convertHexaToRgb('9B65EA'));
 
 // Write a function convertRgbToHexa which converts rgb to hexa color and it returns an hexa color.
 function convertRgbToHexa(rgbColor) {
-    let rgbRed = rgbColor.substr(5)
+    rgbColor = rgbColor.replace('rgb(', '').replace(')', '').split(',');
+ // rgbColor = ['red', 'green', 'blue'];
 
+    let hexRed = (+rgbColor[0]).toString(16);
+    let hexGreen = (+rgbColor[1]).toString(16);
+    let hexBlue = (+rgbColor[2]).toString(16);
+
+    if (hexRed.length == 1)
+    hexRed = "0" + hexRed;
+    if (hexGreen.length == 1)
+    hexGreen = "0" + hexGreen;
+    if (hexBlue.length == 1)
+    hexBlue = "0" + hexBlue;
+
+    return '#' + hexRed + hexGreen + hexBlue;
 };
+console.log(convertRgbToHexa('rgb(255,130,30)'));
+
+/* Write a function generateColors which can generate any number of hexa or rgb colors.
+console.log(generateColors('hexa', 3)) // ['#a3e12f', '#03ed55', '#eb3d2b']
+console.log(generateColors('hexa', 1)) // '#b334ef'
+console.log(generateColors('rgb', 3)) // ['rgb(5, 55, 175)', 'rgb(50, 105, 100)', 'rgb(15, 26, 80)']
+console.log(generateColors('rgb', 1)) // 'rgb(33,79, 176)'
+*/
+function generateColors(type, number) {
+    const hexadecimalArray = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'];
+    if (type === 'hexa' && number === 1) {
+        let hexa = hexadecimalArray[Math.floor(Math.random() * 16)] +
+                   hexadecimalArray[Math.floor(Math.random() * 16)] +
+                   hexadecimalArray[Math.floor(Math.random() * 16)] +
+                   hexadecimalArray[Math.floor(Math.random() * 16)] +
+                   hexadecimalArray[Math.floor(Math.random() * 16)] +
+                   hexadecimalArray[Math.floor(Math.random() * 16)];
+        return `#${hexa}`;
+    } else if (type === 'hexa') {
+        const hexaArray = [];
+        for (i = 0; i < number; i++) {
+            let hexa = hexadecimalArray[Math.floor(Math.random() * 16)] +
+                       hexadecimalArray[Math.floor(Math.random() * 16)] +
+                       hexadecimalArray[Math.floor(Math.random() * 16)] +
+                       hexadecimalArray[Math.floor(Math.random() * 16)] +
+                       hexadecimalArray[Math.floor(Math.random() * 16)] +
+                       hexadecimalArray[Math.floor(Math.random() * 16)];
+            hexaArray.push(`#${hexa}`);
+        } return hexaArray
+    } else if (type === 'rgb' && number === 1) {
+        let red = Math.floor((Math.random() * 256));
+        let green = Math.floor((Math.random() * 256));
+        let blue = Math.floor((Math.random() * 256));
+        return `rgb(${red},${green},${blue})`;
+    } else if (type === 'rgb') {
+        const rgbArray = [];
+        for (i = 0; i < number; i++) {
+            let red = Math.floor((Math.random() * 256));
+            let green = Math.floor((Math.random() * 256));
+            let blue = Math.floor((Math.random() * 256));
+            rgbArray.push(`rgb(${red},${green},${blue})`);
+        } return rgbArray;
+    }
+};
+
+console.log(generateColors('hexa', 1));
+console.log(generateColors('hexa', 3));
+console.log(generateColors('rgb', 1));
+console.log(generateColors('rgb', 3));
+
+// Call your function shuffleArray, it takes an array as a parameter and it returns a shuffled array
