@@ -625,3 +625,177 @@ console.log(generateColors('rgb', 1));
 console.log(generateColors('rgb', 3));
 
 // Call your function shuffleArray, it takes an array as a parameter and it returns a shuffled array
+// const shuffleArray = function() {...}
+// shuffleArray = () => {...}
+function shuffleArray(array) {
+
+    for (i = array.length -1; i > 0; i--) {
+    j = Math.floor(Math.random() * i)
+    k = array[i]
+    array[i] = array[j]
+    array[j] = k
+} 
+    return array
+}
+console.log(shuffleArray([1, 2, 3, 4, 5]));
+
+// Call your function factorial, it takes a whole number as a parameter and it return a factorial of the number
+function factorial (wholeNumber) {
+    let factorial = wholeNumber;
+    for (i = wholeNumber; i > 0; i--) {
+        factorial = factorial * i;
+    };
+    return factorial;
+};
+console.log(factorial(3));
+console.log(factorial(4));
+
+// Call your function isEmpty, it takes a parameter and it checks if it is empty or not
+function isEmpty(par) {
+    if (par.length === 0) {
+        return 'Parameter is empty.'
+    } 
+    return 'Parameter is not empty.'
+};
+let emptyArray = [];
+let undefinedVar = undefined;
+console.log(isEmpty([1, 2, 3]));
+console.log(isEmpty(emptyArray));
+console.log(isEmpty(''));
+
+// Call your function sum, it takes any number of arguments and it returns the sum.
+function sum() {
+    let total = 0;
+    for (i = 0; i < arguments.length; i++) {
+        total += arguments[i];
+    }
+    return total;
+};
+console.log(sum(1, 2, 3));
+
+// Write a function called sumOfArrayItems, it takes an array parameter and return the sum of all the items. Check if all the array items are number types. If not give return reasonable feedback.
+function sumOfArrayItems(arr) {
+    let sum = 0;
+    let nonNumber = false;
+    for (i = 0; i < arr.length; i++) {
+        if (typeof arr[i] === 'number') {
+            sum += arr[i];
+        } else {
+            nonNumber = true;
+        }
+    }
+    if (nonNumber === false) {
+        return `Total sum is ${sum}. Only numbers present.`
+    } else {
+        return `Total sum is ${sum}. Non-numbers were present.`
+    }
+};
+console.log(sumOfArrayItems([1, 2, 3]));
+console.log(sumOfArrayItems([1, 2, 3, 'a']));
+
+// Write a function called average, it takes an array parameter and returns the average of the items. Check if all the array items are number types. If not give return reasonable feedback.
+function average(arr) {
+    let sum = 0;
+    let numberCount = 0;
+    let nonNumber = false;
+    for (i = 0; i < arr.length; i++) {
+        if (typeof arr[i] === 'number') {
+            sum += arr[i];
+            numberCount++
+        } else {
+            nonNumber = true;
+        }
+    }
+    if (nonNumber === false) {
+        return `Average is ${sum / numberCount}. Only numbers present.`
+    } else {
+        return `Average sum is ${sum / numberCount}. Non-numbers were present.`
+    }
+};
+console.log(average([1, 2, 3, 4]));
+console.log(average([1, 2, 3, 4, 'a']));
+
+// Write a function called modifyArray takes array as parameter and modifies the fifth item of the array and return the array. If the array length is less than five it returns 'item not found'.
+function modifyArray(arr) {
+    if (arr[4] !== undefined) {
+        arr[4] = 'mod';
+        return arr;
+    }
+    return 'Item not found.'
+};
+console.log(modifyArray([0, 1, 2, 3]));
+console.log(modifyArray([0, 1, 2, 3, 4]));
+
+// Write a function called isPrime, which checks if a number is prime number.
+function isPrime(number) {
+    if (number === 1) {
+        return `${number} is not prime.`;
+    } else if (number === 3) {
+        return `${number} is prime.`;
+    } else if (number % 2 !== 0 && number % 3 !== 0) {
+        return `${number} is prime.`;
+    }
+    return `${number} is not prime.`
+};
+console.log(isPrime(7));
+console.log(isPrime(10));
+
+// Write a functions which checks if all items are unique in the array.
+function isUnique(arr) {
+    for (i = 0; i < arr.length; i++) {
+        for (n = 0; n < arr.length; n++) {
+            if (arr[i] === arr[n] && i ==! n) {
+                return `${arr[i]} is not unique.`;
+            }
+        }
+    }
+    return 'All items are unique.';
+};
+console.log(isUnique([3, 3, 4]));
+console.log(isUnique([3, 4, 5]));
+
+// Write a function which checks if all the items of the array are the same data type.
+function isSameDataType(arr) {
+    for (i = 0; i < arr.length; i++) {
+        for (n = 0; n < arr.length; n++) {
+            if (typeof arr[i] !== typeof arr[n]) {
+                return 'Not all arrays items are of the same data type.';
+            }
+        }
+    }
+    return 'All arrays items are of the same data type.'
+};
+console.log(isSameDataType([1, 2, 3, 4, 5]));
+console.log(isSameDataType([1, 2, 3, 'a']));
+
+// JavaScript variable name does not support special characters or symbols except $ or _. Write a function isValidVariable which check if a variable is valid or invalid variable.
+function isValidVariable(varName) {
+    for (i = 0; i < varName.length; i++) {
+        if (varName.charAt(i) === '!' || varName.charAt(i) === '@') {  // etc.
+            return 'Name is invalid.';
+        }
+    }
+    return 'Name is valid.';
+};
+console.log(isValidVariable('!name'));
+console.log(isValidVariable('name'));
+
+// Write a function which returns array of seven random numbers in a range of 0-9. All the numbers must be unique.
+function sevenNumbers() {
+    const array = [];
+    for (i = 0; i < 7; i++) {
+    array.push(Math.floor((Math.random() * 10)));
+    }
+    return array;
+};
+console.log(sevenNumbers());
+
+// Write a function called reverseCountries, it takes countries array and first it copy the array and returns the reverse of the original array
+function reverseCountries(arr) {
+    const reverseArray = [];
+    for (i = arr.length - 1; i >= 0; i--) {
+        reverseArray.push(arr[i]);
+    };
+    return reverseArray;
+};
+console.log(reverseCountries(countries));
