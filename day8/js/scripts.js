@@ -263,30 +263,69 @@ function signUp(username, email, password) {
   function checkId() {
     let id = randomId();
     for (i = 0; i < usersNew.length; i++) {
-      if (id === usersNew[i][_id]) {
+      if (id === usersNew[i]['_id']) {
         checkId();
       }
     }
     return id;
   };
 
+  function currentTime() {
+    let day = new Date().getDate();
+    if (day.toString().length === 1) {
+        day = `0${day}`;
+    };
+    let month = new Date().getMonth();
+    if (month.toString().length === 1) {
+        month = `0${month}`;
+    };
+    let year = new Date().getFullYear();
+    let hour = new Date().getHours();
+    if (hour > 12) {
+      hour = hour - 12;
+    }
+    if (hour.toString().length === 1) {
+        hour = `0${hour}`;
+    };
+    let minutes = new Date().getMinutes();
+    if (minutes.toString().length === 1) {
+        minutes = `0${minutes}`;
+    };
+    if (new Date().getHours() < 13) {
+      return `${day}/${month}/${year} ${hour}:${minutes} AM`;
+    } else {
+      return `${day}/${month}/${year} ${hour}:${minutes} PM`;
+    };
+};
+
   const newUser = {
     _id: checkId(),
     username: username,
     email: email,
     password: password,
-
-  }
+    createdAt: currentTime(),
+    isLoggedIn: false
+  };
   
+  usersNew.push(newUser);
+};
 
-  
-
-
-}
-
-
+signUp('Guy', 'guy@mail.com', 'pass123');
+console.log(usersNew);
 
 // Create a function called signIn which allows user to sign in to the application
+function signIn(name, password) {
+  for (i = 0; i < usersNew.length; i++) {
+    if (name === usersNew[i].username && password === usersNew[i].password) {
+      usersNew[i].isLoggedIn = true;
+      return 'User has logged in'
+    }
+  }
+  return 'No such user exists or wrong password'
+};
+console.log(signIn('Thomas', 'wrongpass'));
+console.log(signIn('Thomas', '123333'));
+console.log(usersNew[4].isLoggedIn);
 
 
 
@@ -320,6 +359,47 @@ const products = [
   }
   ];
 
-//Create a function called rateProduct which rates the product b. Create a function called averageRating which calculate the average rating of a product
+//Create a function called rateProduct which rates the product
+function rateProduct(productId, userId, rating) {
+  for (i = 0; i < products.length; i++) {
+    if (productId === products[i]['_id']) {
+      products[i].ratings.push({userId: userId, rate: rating});
+    }
+  }
+};
+rateProduct('hedfcg', 'zzttop', 3);
+console.log(products[2]);
+
+// Create a function called averageRating which calculate the average rating of a product
+function averageRating(productId) {
+  let productRatings = 0;
+  let productAmount = 0;
+  for (i = 0; i < products.length; i++) {
+    if (productId === products[i]['_id']) {
+      for (n = 0; n < products[i].ratings.length; n++) {
+        productRatings += (products[i].ratings[n].rate);
+        productAmount++
+      };
+    };
+  };
+  return productRatings / productAmount;
+};
+console.log(averageRating('eedfcf'));
 
 // Create a function called likeProduct. This function will helps to like to the product if it is not liked and remove like if it was liked
+
+function likeProduct(userId, productId) {
+  for (i = 0; i < products.length; i++) {
+    if (productId === products[i]['_id']) {
+      if (products[i].likes.indexOf(userId) !== -1) {
+        products[i].likes.splice(products[i].likes.indexOf(userId), 1);
+      } else {
+        products[i].likes.push(userId);
+      };
+    };
+  };
+};
+likeProduct('fg12cy', 'aegfal');
+console.log(products[1].likes);
+likeProduct('fg12cy', 'eedfcf');
+console.log(products[0].likes);
