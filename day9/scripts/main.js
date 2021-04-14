@@ -187,7 +187,7 @@ console.log(getLastTenCountries(countries))
 
 // Find out which letter is used many times as initial for a country name from the countries array (eg. Finland, Fiji, France etc).
 function commonLetterCount(arr, initial) {
-  const mapFirstLetter = arr.map((firstLetter) => firstLetter.name[0]) // Array all first letters
+  const mapFirstLetter = arr.map((country) => country.name[0]) // Array all first letters
   
   const uniqueLetters = []
   function letterExists(letter) {
@@ -212,12 +212,91 @@ function commonLetterCount(arr, initial) {
 }
 console.log(commonLetterCount(countries, 'S'))
 
+// A: 15
+
 // Use the countries information, in the data folder. Sort countries by name, by capital, by population
+const nameSort = countries.sort(function(a, b) {
+  let nameA = a.name.toUpperCase();
+  let nameB = b.name.toUpperCase();
+  if (nameA < nameB) {
+    return -1;
+  }
+  if (nameA > nameB) {
+    return 1;
+  }
+  return 0;
+});
+console.log(nameSort)
 
+const capitalSort = countries.sort(function(a, b) {
+  let nameA = a.capital.toUpperCase();
+  let nameB = b.capital.toUpperCase();
+  if (nameA < nameB) {
+    return -1;
+  }
+  if (nameA > nameB) {
+    return 1;
+  }
+  return 0;
+});
+console.log(capitalSort)
 
+const popSort = countries.sort(function(a, b) {
+  let nameA = a.population;
+  let nameB = b.population;
+  if (nameA < nameB) {
+    return -1;
+  }
+  if (nameA > nameB) {
+    return 1;
+  }
+  return 0;
+});
+console.log(popSort)
 
 // Find the 10 most spoken languages.
+function topTenLanguages(arr, number) {
+  
+  const allLanguages = []
+  function iterateLanguages(country) {
+    country.languages.forEach((language) => allLanguages.push(language))
+  }
+  arr.forEach(iterateLanguages) // Array of all instances of a language
 
+  const uniqueLanguages = []
+  function checkLanguage(language) {
+    if (uniqueLanguages.includes(language) === false) {
+      uniqueLanguages.push(language)
+    }
+  }
+  allLanguages.forEach(checkLanguage) // Array of every language
+
+  const languageCount = []
+  function createObject(language) {
+    languageCount.push({language: language, count: 0})
+  }
+  uniqueLanguages.forEach(createObject) // Object array of {language: 'name', count: 0}
+
+  function pushLanguageInstances(language) {
+    languageCount[uniqueLanguages.indexOf(language)].count += 1
+  }
+  allLanguages.forEach(pushLanguageInstances) // Adds total instances of a language to object array count value
+
+  const countSort = languageCount.sort(function(a, b) {
+    let nameA = a.count;
+    let nameB = b.count;
+    if (nameA < nameB) {
+      return 1;
+    }
+    if (nameA > nameB) {
+      return -1;
+    }
+    return 0;
+  }); // Sorts object array by count
+
+  return countSort.slice(0, number)
+}
+console.log(topTenLanguages(countries, 10))
 
 
 /* Your output should look like this
@@ -244,11 +323,33 @@ console.log(mostSpokenLanguages(countries, 3))
 ]
 */
 
-
-
 // Use countries_data.js file create a function which create the ten most populated countries.
-
-
+function populatedCountriesList(arr, number) {
+  
+  /* function extractCountrynPop(object) {
+    let country = object.name
+    let pop = object.population
+    return {country: country, population: pop}
+  }
+  const countrynPopArray = arr.map(extractCountrynPop) // Extracts country name and pop into new object, pushes into new array */
+  return arr.sort(function(a, b) {
+    let nameA = a.population;
+    let nameB = b.population;
+    if (nameA < nameB) {
+      return 1;
+    }
+    if (nameA > nameB) {
+      return -1;
+    }
+    return 0;
+  }).slice(0, number).map(country => {
+    const {name, population} = country
+    return {
+      country: name, population
+    }
+  })
+}
+console.log(populatedCountriesList(countries, 10))
 
 /* console.log(mostPopulatedCountries(countries, 10))
 
@@ -273,14 +374,112 @@ console.log(mostPopulatedCountries(countries, 3))
 ]
 */
 
-
-
 // Try to develop a program which calculate measure of central tendency of a sample(mean, median, mode) and measure of variability(range, variance, standard deviation). In addition to those measures find the min, max, count, percentile, and frequency distribution of the sample. You can create an object called statistics and create all the functions which do statistical calculations as method for the statistics object. Check the output below.
 
+const ages = [31, 26, 34, 37, 27, 26, 32, 32, 26, 27, 27, 24, 32, 33, 27, 25, 26, 38, 37, 31, 34, 24, 33, 29, 26]
 
+const statistics = {
+  count: function(arr) {
+    return arr.length
+  },
+  sum: function(arr) {
+    return arr.reduce((acc, value) => acc + value)
+  },
+  min: function(arr) {
+    return Math.min(...arr)
+  },
+  max: function(arr) {
+    return Math.max(...arr)
+  },
+  range: function(arr) {
+    return this.max(arr) - this.min(arr)
+  },
+  mean: function(arr) {
+    return this.sum(arr) / this.count(arr)
+  },
+  median: function(arr) {
+    arr.sort((a, b) => a - b)
+    if (arr.length % 2 === 0) {
+      return (arr[Math.floor((arr.length - 1) / 2)] + arr[Math.floor((arr.length) / 2)]) / 2
+    } else {
+      return arr[Math.floor(arr.length / 2)]
+    }
+  },
+  mode: function(arr) {
+    let mostCommonNum = 0
+    let currentNumCount = 0
+    let highestNum = 0
+    for (i = 0; i < arr.length; i++) {
+      currentNumCount = 0
+      for (n = 0; n < arr.length; n++) {
+        if (arr[i] === arr[n]) {
+          currentNumCount++
+        }
+      }
+      if (currentNumCount > highestNum) {
+        highestNum = currentNumCount
+        mostCommonNum = arr[i]
+      }
+    }
+    return `(${mostCommonNum}, ${highestNum})`
+  },
+  var: function(arr) {
+    let mean = this.mean(arr)
+    const differenceFromMean = []
+    arr.map(function(age) {
+      differenceFromMean.push(age - mean)
+    })
+    const squaredDifference = []
+    differenceFromMean.map(function(difference) {
+      squaredDifference.push(Math.pow(difference, 2))
+    })
+    return squaredDifference.reduce(function(total, differenceSq) {
+      return total + differenceSq
+    }) / squaredDifference.length
+  },
+  std: function(arr) {
+    return Math.sqrt(this.var(arr))
+  },
+  freqDist: function(arr) {
+    const uniqueAges = []
+    
+    function pushUniqueAges(age) {
+      if (uniqueAges.includes(age) === false) {
+        uniqueAges.push(age)
+      }
+    }
+    arr.forEach(pushUniqueAges)
 
+    function pushFreqDistObj(age) {
+      let count = 0
+      for (i = 0; i < arr.length; i++) {
+        if (arr[i] === age) {
+          count++
+        }
+      }
+      return `(${age}, ${count})`
+    }
+    return uniqueAges.map(pushFreqDistObj)
+  },
+  describe: function(arr) {
+    return `Count: ${this.count(arr)}\nSum: ${this.sum(arr)}\nMin: ${this.min(arr)}\nMax: ${this.max(arr)}\nRange: ${this.range(arr)}\nMean: ${this.mean(arr)}\nMedian: ${this.median(arr)}\nMode: ${this.mode(arr)}\nVariance: ${this.var(arr)}\nStandard Deviation: ${this.std(arr)}\nFrequency Distribution: ${this.freqDist(arr)}`
+  }
+}
 
-/* const ages = [31, 26, 34, 37, 27, 26, 32, 32, 26, 27, 27, 24, 32, 33, 27, 25, 26, 38, 37, 31, 34, 24, 33, 29, 26]
+console.log(statistics.count(ages))
+console.log(statistics.sum(ages))
+console.log(statistics.min(ages))
+console.log(statistics.max(ages))
+console.log(statistics.range(ages))
+console.log(statistics.mean(ages))
+console.log(statistics.median(ages))
+console.log(statistics.mode(ages))
+console.log(statistics.var(ages))
+console.log(statistics.std(ages))
+console.log(statistics.freqDist(ages))
+console.log(statistics.describe(ages))
+
+/* {'mode': 26, 'count': 5}
 
 console.log('Count:', statistics.count()) // 25
 console.log('Sum: ', statistics.sum()) // 744
@@ -292,7 +491,6 @@ console.log('Median: ',statistics.median()) // 29
 console.log('Mode: ', statistics.mode()) // {'mode': 26, 'count': 5}
 console.log('Variance: ',statistics.var()) // 17.5
 console.log('Standard Deviation: ', statistics.std()) // 4.2
-console.log('Variance: ',statistics.var()) // 17.5
 console.log('Frequency Distribution: ',statistics.freqDist()) # [(20.0, 26), (16.0, 27), (12.0, 32), (8.0, 37), (8.0, 34), (8.0, 33), (8.0, 31), (8.0, 24), (4.0, 38), (4.0, 29), (4.0, 25)]
 
 console.log(statistics.describe())
@@ -307,5 +505,5 @@ Mode:  (26, 5)
 Variance:  17.5
 Standard Deviation:  4.2
 Frequency Distribution: [(20.0, 26), (16.0, 27), (12.0, 32), (8.0, 37), (8.0, 34), (8.0, 33), (8.0, 31), (8.0, 24), (4.0, 38), (4.0, 29), (4.0, 25)]
-
 */
+
